@@ -34,6 +34,9 @@ PREV_MATCH = (
 )
 PREV_MATCH_URL = "https://fnl.pro/leon-b/matches/48943"
 
+FREE_SHIRT = 'Розыгрыш формы ФК КДВ в моем ТГ-канале @boroda_tomsk_youtube'
+FREE_SHIRT_URL = 'https://t.me/boroda_tomsk_youtube/632'
+
 
 def save_user(user_id: int, username: str):
     users = []
@@ -64,7 +67,8 @@ def start(update: Update, context: CallbackContext):
     keyboard = [
         ["Перезапустить бота", "Инфо"],
         ["Актуальная таблица"],
-        ["Предыдущий матч", "Ближайший матч"]
+        ["Предыдущий матч", "Ближайший матч"],
+        ["Розыгрыш формы ФК КДВ"]
     ]
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=False)
@@ -98,6 +102,11 @@ def handle_message(update: Update, context: CallbackContext):
             "Статистика матча", url=PREV_MATCH_URL)]]
         markup = InlineKeyboardMarkup(buttons)
         safe_send(context.bot, chat_id, PREV_MATCH, reply_markup=markup)
+    elif text == "Розыгрыш формы ФК КДВ":
+        buttons = [[InlineKeyboardButton(
+            "Розыгрыш формы ФК КДВ", url=FREE_SHIRT_URL)]]
+        markup = InlineKeyboardMarkup(buttons)
+        safe_send(context.bot, chat_id, FREE_SHIRT, reply_markup=markup)
 
 
 def main():
