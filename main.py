@@ -18,21 +18,21 @@ INFO_TEXT = (
 )
 
 NEXT_MATCH = (
-    "✈️ // 28 сентября (вск)\n"
-    "Крылья-Советов-2 (Самара)- ФК КДВ\n"
+    "✈️ // 5 октября (вск)\n"
+    "ФК КДВ - Химик (Дзержинск)\n"
+    "24-ый тур Leon 2 Лига Б\n"
+    "@boroda_tomsk_youtube"
+)
+NEXT_MATCH_URL = "https://fnl.pro/leon-b/matches/48986"
+
+PREV_MATCH = (
+    "🏠 // Волевая победа\n"
+    "28 сентября (вск)\n"
+    "Крылья Советов-2 (Самара) 1-3 ФК КДВ\n"
     "23-ий тур Leon 2 Лига Б\n"
     "@boroda_tomsk_youtube"
 )
-NEXT_MATCH_URL = "https://fnl.pro/leon-b/matches/48960"
-
-PREV_MATCH = (
-    "🏠 // Техническая победа\n"
-    "21 сентября\n"
-    "ФК КДВ 3 - 0 Соколь (Казань)\n"
-    "22-ой тур Leon 2 Лига Б\n"
-    "@boroda_tomsk_youtube"
-)
-PREV_MATCH_URL = "https://fnl.pro/leon-b/matches/48943"
+PREV_MATCH_URL = "https://fnl.pro/leon-b/matches/48960"
 
 FREE_SHIRT = 'Розыгрыш формы ФК КДВ в моем ТГ-канале @boroda_tomsk_youtube'
 FREE_SHIRT_URL = 'https://t.me/boroda_tomsk_youtube/632'
