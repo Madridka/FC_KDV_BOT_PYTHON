@@ -10,6 +10,8 @@ TOKEN = os.getenv("BOT_TOKEN")
 
 USERS_FILE = Path("users.json")
 TABLE_IMAGE = Path("static/table.png")
+PREV_MATCH_IMAGE = Path("static/prev.png")
+NEXT_MATCH_IMAGE = Path("static/next.jpg")
 
 WELCOME_TEXT = "Добро пожаловать! Нажмите на кнопку из меню."
 INFO_TEXT = (
@@ -18,24 +20,17 @@ INFO_TEXT = (
 )
 
 NEXT_MATCH = (
-    "✈️ // 5 октября (вск)\n"
-    "ФК КДВ - Химик (Дзержинск)\n"
-    "24-ый тур Leon 2 Лига Б\n"
+    "🏠 Ждем следующий сезон... 🏠\n"
     "@boroda_tomsk_youtube"
 )
-NEXT_MATCH_URL = "https://fnl.pro/leon-b/matches/48986"
+NEXT_MATCH_URL = "https://t.me/boroda_tomsk_youtube"
 
 PREV_MATCH = (
-    "🏠 // Волевая победа\n"
-    "28 сентября (вск)\n"
-    "Крылья Советов-2 (Самара) 1-3 ФК КДВ\n"
-    "23-ий тур Leon 2 Лига Б\n"
+    "🏠 ПОСЛЕДНИЙ МАТЧ СЕЗОНА 🏠\n"
+    "МОЩНЫЙ КАМБЭК, волевая ПОБЕДА!\n"
     "@boroda_tomsk_youtube"
 )
-PREV_MATCH_URL = "https://fnl.pro/leon-b/matches/48960"
-
-FREE_SHIRT = 'Розыгрыш формы ФК КДВ в моем ТГ-канале @boroda_tomsk_youtube'
-FREE_SHIRT_URL = 'https://t.me/boroda_tomsk_youtube/632'
+PREV_MATCH_URL = "https://fnl.pro/leon-b/matches/49029"
 
 
 def save_user(user_id: int, username: str):
@@ -67,8 +62,7 @@ def start(update: Update, context: CallbackContext):
     keyboard = [
         ["Перезапустить бота", "Инфо"],
         ["Актуальная таблица"],
-        ["Предыдущий матч", "Ближайший матч"],
-        ["Розыгрыш формы ФК КДВ"]
+        ["Предыдущий матч", "Ближайший матч"]
     ]
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=False)
@@ -86,27 +80,21 @@ def handle_message(update: Update, context: CallbackContext):
     elif text == "Инфо":
         safe_send(context.bot, chat_id, INFO_TEXT)
     elif text == "Актуальная таблица":
-        if TABLE_IMAGE.exists():
-            safe_send(context.bot, chat_id,
-                      "🏆 Актуальная таблица Leon Лига Б, группа 4 \n@boroda_tomsk_youtube",
-                      photo=TABLE_IMAGE)
-        else:
-            safe_send(context.bot, chat_id, "Файл таблицы не найден.")
+        safe_send(context.bot, chat_id,
+                  "🏆 Финальная таблица сезона 2025 Leon Лига Б, группа 4 \n@boroda_tomsk_youtube",
+                  photo=TABLE_IMAGE)
     elif text == "Ближайший матч":
         buttons = [[InlineKeyboardButton(
             "Ссылка на матч", url=NEXT_MATCH_URL)]]
         markup = InlineKeyboardMarkup(buttons)
-        safe_send(context.bot, chat_id, NEXT_MATCH, reply_markup=markup)
+        safe_send(context.bot, chat_id, NEXT_MATCH,
+                  reply_markup=markup, photo=NEXT_MATCH_IMAGE)
     elif text == "Предыдущий матч":
         buttons = [[InlineKeyboardButton(
             "Статистика матча", url=PREV_MATCH_URL)]]
         markup = InlineKeyboardMarkup(buttons)
-        safe_send(context.bot, chat_id, PREV_MATCH, reply_markup=markup)
-    elif text == "Розыгрыш формы ФК КДВ":
-        buttons = [[InlineKeyboardButton(
-            "Розыгрыш формы ФК КДВ", url=FREE_SHIRT_URL)]]
-        markup = InlineKeyboardMarkup(buttons)
-        safe_send(context.bot, chat_id, FREE_SHIRT, reply_markup=markup)
+        safe_send(context.bot, chat_id, PREV_MATCH,
+                  reply_markup=markup, photo=PREV_MATCH_IMAGE)
 
 
 def main():
